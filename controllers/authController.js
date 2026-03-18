@@ -21,7 +21,7 @@ const signup = async (req, res) => {
     });
 
     const token = signinToken(newUser._id)
-    console.log(token);
+
     res.status(202).json({
       status: 'success',
       message: 'the user has been created successfully',
@@ -53,7 +53,7 @@ const login = async (req, res, next) => {
     //Find a user with this email and include the password field even though it is normally hidden.
     const user = await User.findOne({ email }).select('+password');
     const correct = await user.correctPassword(password, user.password);
-    console.log(correct);
+
     if (!user || !correct) {
       return res.status(401).json({
         status: 'fail',
@@ -96,7 +96,7 @@ const protect = async (req, res, next) => {
       message: 'invalid token please log-in again'
     })
   }
-  console.log(decoded);
+
   const freshUser = await User.findById(decoded.id)
   if (!freshUser) {
     return res.status(401).json({
@@ -105,7 +105,7 @@ const protect = async (req, res, next) => {
     })
   }
   req.user = freshUser;
-  console.log(req.user);
+
   next()
 }
 export { signup, login, protect }
