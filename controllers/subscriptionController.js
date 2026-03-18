@@ -50,7 +50,7 @@ const getSubscription = async (req, res) => {
       _id: req.params.id,
       userId: req.user.id
     });
-    console.log(subscription);
+
     if (!subscription) {
       return res.status(404).json({
         status: 'fail',
