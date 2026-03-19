@@ -7,8 +7,9 @@ router
   .post('/subscriptions/createSub', protect, createSubscription);
 
 router
-  .get('/subscriptions', protect, getAllSubscriptions)
+  .get('/subscriptions', getAllSubscriptions)
   .get('/subscriptions/:id', protect, getSubscription)
+
   .put('/subscriptions/:id', protect, updateSubscription)
   .delete('/subscriptions/:id', protect, deleteSubscription)
 

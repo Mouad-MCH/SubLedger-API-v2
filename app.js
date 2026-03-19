@@ -1,10 +1,11 @@
+
 import express from 'express';
 import morgan from 'morgan';
+const app = express();
+app.set('query parser', 'extended');
 
 import userRoutes from './routes/userRoutes.js';
 import subscriptionRoute from './routes/subscriptionRoutes.js';
-
-const app = express();
 
 app.use(express.json());
 
