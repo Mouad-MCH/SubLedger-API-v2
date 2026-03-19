@@ -9,6 +9,7 @@ The system allows users to register, log in, and manage their personal subscript
 
 <img width="431" height="305" alt="{5E61FD5F-DF9D-42FC-A5AB-2377BC0D5E06}" src="https://github.com/user-attachments/assets/fea73a38-64d3-47c5-9ad2-95ddf87cc396" />
 
+<img width="365" height="394" alt="{1185612E-A750-41EF-8C38-D0EAD97C1938}" src="https://github.com/user-attachments/assets/6e38a213-1962-46de-8513-eb8512f207bd" />
 
 ## Features
 
