@@ -63,7 +63,7 @@ const getSubscription = async (req, res) => {
       _id: req.params.id,
       userId: req.user.id
     });
-    console.log(subscription);
+
     if (!subscription) {
       return res.status(404).json({
         status: 'fail',
@@ -127,4 +127,32 @@ const deleteSubscription = async (req, res) => {
     });
   };
 }
-export { createSubscription, getAllSubscriptions, getSubscription, updateSubscription, deleteSubscription };
+
+const cancelSubscription = async (req, res) => {
+  const {id} = req.params
+  const userId = req.user.id
+  try {
+      const subscription = await Subscription.findByIdAndUpdate({ _id: id, userId }, { $set: { status: "canceeled"} }, { returnDocument: 'after' });
+
+      if(!subscription) {
+        return res.status(404).json({
+          success: false,
+          message: 'subscription not found'
+        })
+      }
+
+      res.status(200).json({
+          success: true,
+          message: 'Subscription canceled!',
+          subscription
+      })
+
+  }catch(err) {
+    res.status(500).json({
+      success: false,
+      message: "server error"
+    })
+  }
+}
+
+export { createSubscription, getAllSubscriptions, getSubscription, updateSubscription, deleteSubscription, cancelSubscription };

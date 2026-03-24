@@ -25,7 +25,12 @@ const subscriptionSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["cancel", "active"],
+    default: "active"
+  }
 })
 
-const Subscription = mongoose.model('subscription', subscriptionSchema);
+const Subscription = mongoose.model('Subscription', subscriptionSchema);
 export { Subscription }

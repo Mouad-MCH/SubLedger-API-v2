@@ -7,9 +7,9 @@ The goal of this project is to build a secure REST API with authentication, auth
 
 The system allows users to register, log in, and manage their personal subscriptions while providing administrators with access to special routes.
 
----
-<img width="2278" height="1836" alt="Image" src="https://github.com/user-attachments/assets/0f62a744-c185-4cce-bd6d-30545698f086" />
-<img width="273" height="773" alt="Image" src="https://github.com/user-attachments/assets/c7f4546d-b759-4f24-aad7-334e79b83a9b" />
+<img width="431" height="305" alt="{5E61FD5F-DF9D-42FC-A5AB-2377BC0D5E06}" src="https://github.com/user-attachments/assets/fea73a38-64d3-47c5-9ad2-95ddf87cc396" />
+
+<img width="365" height="394" alt="{1185612E-A750-41EF-8C38-D0EAD97C1938}" src="https://github.com/user-attachments/assets/6e38a213-1962-46de-8513-eb8512f207bd" />
 
 ## Features
 
