@@ -26,14 +26,27 @@ const createSubscription = async (req, res) => {
 
 const getAllSubscriptions = async (req, res) => {
   try {
-    const subscriptions = await Subscription.find({ userId: req.user._id });
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+    const skip = (page - 1) * limit;
 
+    const filter = {};
+    if (req.query.status) filter.status = req.query.status;
+    if (req.query.subscriptionId) filter._id = req.query.subscriptionId;
+    if (req.query.startDate) filter.startDate = { $gte: new Date(req.query.startDate) };
+
+    const subscriptions = await Subscription.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit)
+    const total = await Subscription.countDocuments(filter);
+
+    // sending response:
     res.status(200).json({
       status: 'success',
+      page, totalPages: Math.ceil(total / limit),
       results: subscriptions.length,
-      data: {
-        subscriptions
-      }
+      data: { subscriptions },
     });
 
   } catch (err) {

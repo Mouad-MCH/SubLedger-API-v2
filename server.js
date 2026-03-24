@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
-import app from './app.js';
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
 dotenv.config({ path: './config.env' });
+import app from './app.js';
+
 
 mongoose.connect(process.env.CONNECT_DB).then((con) => {
   console.log('database connected successfully');
