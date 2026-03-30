@@ -19,6 +19,76 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res)=>{
+  try {
+    const user = await User.findById(req.params.id);
+    if(!user){
+      return res.status(404).json({
+        status:"fail",
+        message:"User not Found",
+      });
+    }
+    res.status(200).json({
+      status: "succes",
+      data: {user},
+    });
+  } catch (error) {
+    res.status(500).json({
+      status:"fail",
+      message:error.message,
+    })
+  }
+}
+
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true, 
+        runValidators: true,
+      }
+    );
+    if (!user) {
+      return res.status(404).json({
+        status: "fail",
+        message: "User not found",
+      });
+    }
+    res.status(200).json({
+      status: "success",
+      data: { user },
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+}
+
+const deleteUser = async (req, res) => {
+  try {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        status: "fail",
+        message: "User not found",
+      });
+    }
+    res.status(204).json({
+      status: "success",
+      data: null,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "fail",
+      message: error.message,
+    });
+  }
+}
+
 const getStats = async (req, res, next) => { 
     try {
         const totalUsers = await User.countDocuments();
@@ -87,4 +157,8 @@ const getStats = async (req, res, next) => {
     }
 };
 
-export { getAllUsers,getStats };
+export { getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+  getStats, };
